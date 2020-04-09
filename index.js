@@ -42,7 +42,7 @@ app.use('/assets',express.static(__dirname + '/public'));
 
 //route for homepage
 app.get('/',(req, res) => {  
-    res.render('registration',{
+    res.render('home',{
     });
   });
  
