@@ -16,6 +16,10 @@ var mysql = require('mysql');
 
 var app = express();
 
+const fs = require('fs');
+
+
+
  
 //set views file
 app.set('views',path.join(__dirname,'views'));
@@ -46,5 +50,13 @@ app.get('/',(req, res) => {
     });
   });
  
+app.get('/josn_read',(req, res) => {  
+    
+    let rawdata = fs.readFileSync('/json_files/new-json.json');
+    let student = JSON.parse(rawdata); 
+   res.send(student);
+
+  });
+
 //server listening
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
