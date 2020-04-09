@@ -58,9 +58,12 @@ app.get('/json-read',(req, res) => {
 
   });
 
-app.get('/hello',(req, res) => {  
+app.post('/json-write',(req, res) => {  
   
-   res.send("hello!");
+  res.send(req.body);
+
+  // let data = JSON.stringify(student);
+  // fs.writeFileSync('student-2.json', data);
 
   });
 
