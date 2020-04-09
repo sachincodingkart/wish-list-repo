@@ -50,7 +50,7 @@ app.get('/',(req, res) => {
     });
   });
  
-app.get('/josn_read',(req, res) => {  
+app.get('/josn-read',(req, res) => {  
     
     let rawdata = fs.readFileSync('./json_files/new-json.json');
     let student = JSON.parse(rawdata); 
