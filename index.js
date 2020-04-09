@@ -58,7 +58,7 @@ app.get('/josn_read',(req, res) => {
 
   });
 
-app.get('/josn_write',(req, res) => {  
+app.get('/hello',(req, res) => {  
   
    res.send("hello!");
 
