@@ -52,9 +52,15 @@ app.get('/',(req, res) => {
  
 app.get('/josn_read',(req, res) => {  
     
-    let rawdata = fs.readFileSync('/json_files/new-json.json');
+    let rawdata = fs.readFileSync('./json_files/new-json.json');
     let student = JSON.parse(rawdata); 
    res.send(student);
+
+  });
+
+app.get('/josn_write',(req, res) => {  
+  
+   res.send("hello!");
 
   });
 
