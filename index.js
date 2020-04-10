@@ -69,7 +69,13 @@ app.post('/json-write',(req, res) => {
 	};
  var rawdata = fs.readFileSync('./json_files/new-json.json');	
  var file_data = JSON.parse(rawdata); 
- file_data.shop_name = shop_data;
+		 if(file_data){
+		   file_data.shop_name = shop_data;
+		  }
+		  else
+		  {
+		  	file_data = shop_data;
+		  }
  // res.send(req.body);
  // 
 	// let data = JSON.stringify(shop_data);
