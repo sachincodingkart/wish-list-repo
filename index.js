@@ -60,7 +60,17 @@ app.get('/json-read',(req, res) => {
 
 app.post('/json-write',(req, res) => {  
   
-  res.send(req.body);
+  
+  var shop_name = req.body.shop_name;
+  var cust_id   = req.body.cust_id;
+  var pro_id    = req.body.shop_name;
+  let shop_data   = { 
+        shop_name: [ "cust_id": cust_id, "pro_id": pro_id,], 
+	};
+ res.send(req.body);
+ res.send(shop_data);
+	let data = JSON.stringify(shop_data);
+	fs.writeFileSync('./json_files/new-json.json', data);
 
   // let data = JSON.stringify(student);
   // fs.writeFileSync('student-2.json', data);
