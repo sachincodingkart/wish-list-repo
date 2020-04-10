@@ -7,6 +7,30 @@
 	<body>
 		<div class="login-form">
 			start your functinality
+			<a href="javascript:void(0)" class="call_ajax">ajax call</a>
 		</div>
 	</body>
 </html>
+<script type="text/javascript">
+	jQuery(document).ready(function()
+	{
+      jQuery(document).on('click','.call_ajax',function()
+		{
+         jQuery.ajax({
+                  url: '/json-write',
+                  data: "5555555555555555",
+                  dataType: "jsonp",
+                  success: function (data) {
+                      var ret = jQuery.parseJSON(data);
+                      jQuery('#lblResponse').html(ret.msg);
+                      console.log('Success: ')
+                  },
+                  error: function (xhr, status, error) {
+                      console.log('Error: ' + error.message);
+                      jQuery('#lblResponse').html('Error connecting to the server.');
+                  },
+               
+              });
+		});
+	});
+</script>
