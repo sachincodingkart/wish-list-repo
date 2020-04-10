@@ -6,7 +6,7 @@ var express = require('express');
 //use ejs view engine
 var session = require('express-session');
 
-// const PORT = process.env.PORT || 5000
+const port = process.env.PORT || 5000
 
 var ejs = require('ejs');
 //use bodyParser middleware
