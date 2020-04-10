@@ -70,7 +70,7 @@ app.post('/json-write',(req, res) => {
  // res.send(req.body);
  // 
 	let data = JSON.stringify(shop_data);
-	fs.writeFileSync('./json_files/new-json.json', data);
+	fs.writeFile('./json_files/new-json.json', data);
     res.send(shop_data);
   // let data = JSON.stringify(student);
   // fs.writeFileSync('student-2.json', data);
