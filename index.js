@@ -71,6 +71,7 @@ app.post('/json-write',(req, res) => {
  var file_data = JSON.parse(rawdata); 
 		 if(file_data){
 		   file_data.shop_name = shop_data;
+		   file_data = JSON.stringify(file_data);
 		  }
 		  else
 		  {
@@ -79,7 +80,7 @@ app.post('/json-write',(req, res) => {
  // res.send(req.body);
  // 
 	// let data = JSON.stringify(shop_data);
-	fs.writeFileSync('./json_files/new-json.json', JSON.stringify(file_data));
+	fs.writeFileSync('./json_files/new-json.json', file_data );
     res.send(shop_data);
   // let data = JSON.stringify(student);
   // fs.writeFileSync('student-2.json', data);
