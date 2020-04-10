@@ -65,7 +65,7 @@ app.post('/json-write',(req, res) => {
   var cust_id   = req.body.cust_id;
   var pro_id    = req.body.shop_name;
   let shop_data   = { 
-        shop_name: [ "cust_id": cust_id, "pro_id": pro_id,], 
+        shop_name: [ {"cust_id": cust_id},{ "pro_id": pro_id,}] 
 	};
  res.send(req.body);
  res.send(shop_data);
