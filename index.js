@@ -53,8 +53,8 @@ app.get('/',(req, res) => {
 app.get('/json-read',(req, res) => {  
     
     let rawdata = fs.readFileSync('./json_files/new-json.json');
-    let student = JSON.parse(rawdata); 
-   res.send(student);
+    let file_data = JSON.parse(rawdata); 
+   res.send(file_data);
 
   });
 
@@ -68,7 +68,8 @@ app.post('/json-write',(req, res) => {
         shop_name: [ {"cust_id": cust_id},{ "pro_id": pro_id,}] 
 	};
  var rawdata = fs.readFileSync('./json_files/new-json.json');	
- var new_data =  rawdata.push(shop_data);
+ var file_data = JSON.parse(rawdata); 
+ var new_data =  file_data.push(shop_data);
  // res.send(req.body);
  // 
 	let data = JSON.stringify(shop_data);
