@@ -69,11 +69,11 @@ app.post('/json-write',(req, res) => {
 	};
  var rawdata = fs.readFileSync('./json_files/new-json.json');	
  var file_data = JSON.parse(rawdata); 
- var new_data =  file_data.push(shop_data);
+ file_data.shop_name = shop_data;
  // res.send(req.body);
  // 
-	let data = JSON.stringify(shop_data);
-	fs.writeFileSync('./json_files/new-json.json', new_data);
+	// let data = JSON.stringify(shop_data);
+	fs.writeFileSync('./json_files/new-json.json', JSON.stringify(file_data));
     res.send(shop_data);
   // let data = JSON.stringify(student);
   // fs.writeFileSync('student-2.json', data);
