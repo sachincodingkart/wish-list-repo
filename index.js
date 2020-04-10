@@ -67,10 +67,12 @@ app.post('/json-write',(req, res) => {
   let shop_data   = { 
         shop_name: [ {"cust_id": cust_id},{ "pro_id": pro_id,}] 
 	};
+ var rawdata = fs.readFileSync('./json_files/new-json.json');	
+ var new_data =  json.push(shop_data);
  // res.send(req.body);
  // 
 	let data = JSON.stringify(shop_data);
-	fs.writeFileSync('./json_files/new-json.json', data);
+	fs.writeFileSync('./json_files/new-json.json', new_data);
     res.send(shop_data);
   // let data = JSON.stringify(student);
   // fs.writeFileSync('student-2.json', data);
