@@ -8,6 +8,7 @@
 		<div class="login-form">
 			start your functinality
 			<a href="javascript:void(0)" class="call_ajax">ajax call</a>
+			<a href="javascript:void(0)" class="call_ajax1">ajax call</a>
 		</div>
 	</body>
 </html>
@@ -20,6 +21,25 @@
 		 console.log("call_ajax")	
          jQuery.ajax({
                   url: '/json-write',
+                  data: "5555555555555555",
+                  dataType: "jsonp",
+                  success: function (data) {
+                      var ret = jQuery.parseJSON(data);
+                      jQuery('#lblResponse').html(ret.msg);
+                      console.log('Success: ')
+                  },
+                  error: function (xhr, status, error) {
+                      console.log('Error: ' + error.message);
+                      jQuery('#lblResponse').html('Error connecting to the server.');
+                  },
+               
+              });
+		});
+      jQuery(document).on('click','.call_ajax1',function()
+		{
+		 console.log("call_ajax1")	
+         jQuery.ajax({
+                  url: 'https://blooming-atoll-23423.herokuapp.com/json-write',
                   data: "5555555555555555",
                   dataType: "jsonp",
                   success: function (data) {

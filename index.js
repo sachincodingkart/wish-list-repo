@@ -66,5 +66,13 @@ app.post('/json-write',(req, res) => {
   // fs.writeFileSync('student-2.json', data);
 
   });
+app.get('/json-write',(req, res) => {  
+  
+  res.send(req.body);
+
+  // let data = JSON.stringify(student);
+  // fs.writeFileSync('student-2.json', data);
+
+  });
 
 app.listen(port, () => console.log(`Listening on ${ port }`));
