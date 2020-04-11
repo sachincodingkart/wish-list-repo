@@ -16,10 +16,21 @@ var mysql = require('mysql');
 
 var app = express();
 
-const fs = require('fs');
 
+let pg = require('pg');
+if (process.env.DATABASE_URL) {
+  pg.defaults.ssl = true;
+}
 
+let connString = process.env.DATABASE_URL || 'postgres://ytamkroyffxgnt:dca99427b6da93b53823fee68f63566d4c4eff9a26662d4c9925c787b8744137@ec2-34-193-232-231.compute-1.amazonaws.com:5432/d3rsmfbojfac9k';
+const { Pool } = require('pg');
 
+const conn = new Pool({
+  connectionString : connString
+});
+ 
+  conn.query(
+  'CREATE TABLE shop_data(id SERIAL PRIMARY KEY, shop_name VARCHAR(255) not null, customer_id VARCHAR(255), product_id VARCHAR(255) not null)');
  
 //set views file
 app.set('views',path.join(__dirname,'views'));
@@ -46,10 +57,16 @@ app.use('/assets',express.static(__dirname + '/public'));
 
 //route for homepage
 app.get('/',(req, res) => {  
-  let rawdata = fs.readFileSync('./json_files/new-json.json');
-  let file_data = JSON.parse(rawdata); 
-    res.render('home',{ shop_data : file_data
-    });
+     
+    let sql = "SELECT * FROM new_quiz";
+    let query = conn.query(sql, (err, results) => {
+     if (results.rows.length>0) 
+        {
+          res.render('home',{ shop_data : results.rows });
+        } 
+     else {
+          res.render('home',{ shop_data : err });
+         }
   });
  
 app.get('/json-read',(req, res) => {  
@@ -60,36 +77,26 @@ app.get('/json-read',(req, res) => {
 
   });
 
-app.post('/json-write',(req, res) => {  
+app.post('/add-to-wish',(req, res) => {  
   
-  var shop_data = {};
-  var file_data = '';
   var shop_name = req.body.shop_name;
   var cust_id   = req.body.cust_id;
   var pro_id    = req.body.pro_id;
-  shop_data[shop_name]   = [ {"cust_id": cust_id},{ "pro_id": pro_id}] ;
-
-  var rawdata = fs.readFileSync('./json_files/new-json.json');	
-  console.log("hello");
-
-  // res.send(rawdata);
-		 if(rawdata !=''){
-           file_data = JSON.parse(rawdata); 
-		   file_data[shop_name].push(shop_data[shop_name]);
-		   file_data = JSON.stringify(file_data);
-		  }
-		  else
-		  {
-		  	file_data = shop_data;
-		  }
- // res.send(req.body);
- // 
-	// let data = JSON.stringify(shop_data);
-	fs.writeFileSync('./json_files/new-json.json', file_data );
-    res.send(shop_data);
-  // let data = JSON.stringify(student);
-  // fs.writeFileSync('student-2.json', data);
-
-  });
+  
+   let data = {shop_name: req.body.shop_name, cust_id: req.body.cust_id, pro_id: req.body.pro_id};
+    const  query = {
+		        text: 'INSERT INTO shop_data(shop_name, customer_id, product_id ) VALUES($1, $2, $3)',
+		        values: [data.shop_name, data.cust_id, data.pro_id ],
+	         }
+    cconn.query(query, (err, results) => {
+      if (err)
+       {
+        res.send(err);
+       } 
+      else {
+           res.send(data);
+         }
+   });
+});
 
 app.listen(port, () => console.log(`Listening on ${ port }`));
