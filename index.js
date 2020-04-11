@@ -29,8 +29,8 @@ const conn = new Pool({
   connectionString : connString
 });
  
-  conn.query(
-  'CREATE TABLE shop_data(id SERIAL PRIMARY KEY, shop_name VARCHAR(255) not null, customer_id VARCHAR(255), product_id VARCHAR(255) not null)');
+  // conn.query(
+  // 'CREATE TABLE shop_data(id SERIAL PRIMARY KEY, shop_name VARCHAR(255) not null, customer_id VARCHAR(255), product_id VARCHAR(255) not null)');
  
 //set views file
 app.set('views',path.join(__dirname,'views'));
@@ -69,13 +69,6 @@ app.get('/',(req, res) => {
          }
    });
  });
-app.get('/json-read',(req, res) => {  
-    
-    let rawdata = fs.readFileSync('./json_files/new-json.json');
-    let file_data = JSON.parse(rawdata); 
-   res.send(file_data);
-
-  });
 
 app.post('/add-to-wish',(req, res) => {  
   
