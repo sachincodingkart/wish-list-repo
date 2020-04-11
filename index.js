@@ -73,7 +73,7 @@ app.post('/json-write',(req, res) => {
   // res.send(rawdata);
 		 if(rawdata !=''){
            file_data = JSON.parse(rawdata); 
-		   file_data[[shop_name]].push(shop_data[shop_name]);
+		   file_data[shop_name].push(shop_data[shop_name]);
 		   file_data = JSON.stringify(file_data);
 		  }
 		  else
