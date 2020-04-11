@@ -67,8 +67,8 @@ app.get('/',(req, res) => {
      else {
           res.render('home',{ shop_data : err });
          }
-  });
- 
+   });
+ });
 app.get('/json-read',(req, res) => {  
     
     let rawdata = fs.readFileSync('./json_files/new-json.json');
