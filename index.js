@@ -74,7 +74,7 @@ app.post('/json-write',(req, res) => {
 		 if(rawdata !=''){
            file_data = rawdata; 
 		   // file_data[shop_name] = [ {"cust_id": cust_id},{ "pro_id": pro_id}];
-		   file_data.push(shop_data);
+		   file_data.push(shop_data[shop_name]);
 		   file_data = JSON.stringify(file_data);
 		  }
 		  else
