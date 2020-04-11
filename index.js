@@ -60,9 +60,10 @@ app.get('/',(req, res) => {
      
     let sql = "SELECT * FROM new_quiz";
     let query = conn.query(sql, (err, results) => {
+    	console.log(results);
      if (results.rows.length>0) 
         {
-          res.render('home',{ shop_data : results.rows });
+          res.render('home',{ shop_data : results });
         } 
      else {
           res.render('home',{ shop_data : err });
