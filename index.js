@@ -58,12 +58,12 @@ app.use('/assets',express.static(__dirname + '/public'));
 //route for homepage
 app.get('/',(req, res) => {  
      
-    let sql = "SELECT * FROM new_quiz";
+    let sql = "SELECT * FROM shop_data";
     let query = conn.query(sql, (err, results) => {
     	console.log(results);
      if (results.rows.length>0) 
         {
-          res.render('home',{ shop_data : results });
+          res.render('home',{ shop_data : results.rows });
         } 
      else {
           res.render('home',{ shop_data : err });
