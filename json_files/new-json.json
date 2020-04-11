@@ -1,7 +1,1 @@
-{ 
-    "name": "Sara",
-    "age": 23,
-    "gender": "Female",
-    "department": "History",
-    "car": "Honda"
-}
+{"myshop":[{"cust_id":"6"},{"pro_id":"4938577248300"}]}
