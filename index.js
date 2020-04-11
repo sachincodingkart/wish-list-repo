@@ -46,7 +46,9 @@ app.use('/assets',express.static(__dirname + '/public'));
 
 //route for homepage
 app.get('/',(req, res) => {  
-    res.render('home',{
+  let rawdata = fs.readFileSync('./json_files/new-json.json');
+  let file_data = JSON.parse(rawdata); 
+    res.render('home',{ shop_data : file_data
     });
   });
  
