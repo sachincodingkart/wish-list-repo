@@ -61,6 +61,7 @@ app.get('/json-read',(req, res) => {
 app.post('/json-write',(req, res) => {  
   
   var shop_data = {};
+  var file_data = '';
   var shop_name = req.body.shop_name;
   var cust_id   = req.body.cust_id;
   var pro_id    = req.body.pro_id;
@@ -71,6 +72,7 @@ app.post('/json-write',(req, res) => {
 
   // res.send(rawdata);
 		 if(rawdata !=''){
+           file_data = rawdata; 
 		   // file_data[shop_name] = [ {"cust_id": cust_id},{ "pro_id": pro_id}];
 		   file_data.push(shop_data);
 		   file_data = JSON.stringify(file_data);
