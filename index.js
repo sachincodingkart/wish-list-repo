@@ -77,12 +77,11 @@ app.post('/add-to-wish',(req, res) => {
   var pro_id    = req.body.pro_id;
   
    let data = {shop_name: req.body.shop_name, cust_id: req.body.cust_id, pro_id: req.body.pro_id};
-   res.send(data);
     const  query = {
 		        text: 'INSERT INTO shop_data(shop_name, customer_id, product_id ) VALUES($1, $2, $3)',
 		        values: [data.shop_name, data.cust_id, data.pro_id ],
 	         }
-    cconn.query(query, (err, results) => {
+     conn.query(query, (err, results) => {
       if (err)
        {
         res.send(err);
